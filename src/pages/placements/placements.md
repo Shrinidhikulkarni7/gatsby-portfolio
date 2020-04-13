@@ -1,60 +1,70 @@
 ---
-path: "/blog/my-take-on-placements"
+path: "/blog/obfuscation"
 date: 2017-07-01
-title: "My Take On Placements."
+title: "Obfuscation of the code"
 ---
 
-Well, always remember your job description is always important than money. Always look to study and learn and never go behind company fame or salary.  
+In software development, obfuscation is the deliberate act of creating source or machine code that is difficult for humans to understand. Like obfuscation in natural language, it may use needlessly roundabout expressions to compose statements.
 
-To start with the preparation for getting a job which you would like to, you need to clear the first step, which is quantitative aptitude (for most of the companies)  
 
-RS Agarwal book and indiabix website are the one I suggest.  
+**Why?**
 
-I know it’s hard to prepare each and every part of the quant, so I will list the important one’s —  
+When we deploy our code using docker on client environment they can attach or exec into the code base and get the source code of it. This needs to be hidden/encrypted.
+Most of the web-apps are in JavaScript. We will obfuscate the main server code so that there is no access to source code.
 
-* Profit and loss
-* Time and distance
-* Time and work
-* Percentage
-* Pipes (to lesser extent)
-* Logarithms(only for AMCAT platform)
-* Mixture (to lesser extent)  
 
-This is how you clear the first round ☺  
+**How to do it?**
 
-Next comes the interview process. Every company has different set of interview questions, and how do you know what do they ask?  
+1. There is a npm package for obfuscating the javascript code. The name of the package is JavaScript obfuscator.(https://www.npmjs.com/package/javascript-obfuscator)
 
-Well I have a easy trick for it  
 
-> Google “company name” glassdoor.  
+2. Obfuscating can be done on a folder directly, meaning all the javascript files in the folder will be obfuscated.Example — javascript-obfuscator [folder name]
 
-Now In filter option  
 
-> Set location to India  
+3. Although this works perfectly in obfuscating all the files, the files are not replaced.
+A copy of the file with obfuscated code is made, which will be named
 
-And  
+>[filename]-obfuscated.js
 
-> Job title is job description which company provides.  
 
-Prepare those questions which are given there and you will get the similar kind of questions for the interview.  
+4. The original file needs to be replaced with the file containing obfuscated code and the original file needs to be deleted.
 
-For the coding round which most of T1 will have, you need to get started from hackerearth, hackerrank or code chef.  
+5. We should also keep in mind to replace the obfuscated file’s filename to original filename as other files may be referencing them.
+The actual working of script
+In the previous paragraph I wrote how obfuscation works in words. Let’s get to actual working.
+Let’s write a shell script for the same.
+Obfuscate the code for the current folder by -
+javascript-obfuscator .
+2. Since all the files which are obfuscated will have obfuscated in the filename, we can find the obfuscated files which are of .js extension and rename it by removing the .js extension from filename.
+find -name “*obfuscated*” -exec rename ‘s/obfuscated.js/obfuscated/’ {} “;”
+3. Now, we will have to delete all the files with .js extension from the folder which has plain source file. We can do this by,
+find . -name “*.js” -type f -delete
+4. Since all the plain Js file have been deleted, we can change the obfuscated folder to have the name of original file where all references might be made,
+find -name “*obfuscated*” -exec rename -v ‘s/obfuscated/.js/’ {} “;”
+5. The extra character “-” can be removed by using,
+find -name “*js*” -exec rename -v ‘s/-//’ {} “;”
+Illustration of the same with an example
+Consider you have a folder named server and it has two files named a.js and b.js.
+After running the command ‘javascript-obfuscator .’ on server folder the files will be a.js,b.js,a-obfuscated.js and b-obfuscated.js.
+After running,
+find -name “*obfuscated*” -exec rename ‘s/obfuscated.js/obfuscated/’ {} “;”
+The server folder will have a.js, b.js , a-obfuscated and b-obfuscated
+(the command will remove .js extension from obfuscated files)
+4. To delete all the files with .js extension use,
+find . -name “*.js” -type f -delete
+Now the server folder will have a-obfuscated and b-obfuscated.
+5. After running ,
+find -name “*obfuscated*” -exec rename -v ‘s/obfuscated/.js/’ {} “;”
+The server folder will have a-.js and b-.js
+(The command renames all obfuscated files to normal file name with .js extension)
+6. find -name “*js*” -exec rename -v ‘s/-//’ {} “;”
+This particular command will delete the extra “-” from filename and the server folder will have a.js and b.js.
 
-What about the aptitude questions asked in initial stage?  
 
-Well I prefer these two apps —  
+The beauty of this will be javascript-obfuscated code cannot be decrypted or achieved by reverse engineered.
+It will produce different obfuscated code to same file when done after sometime.
+It will be very hard to break it( almost impossible)
 
-* Geek quiz
-* Code monk  
 
-These will help you to clear initial stage.  
 
-I don’t remember whatever I had studied from beginning, do I need to study the textbook again?  
-
-## NO  
-
-Main thing is GeeksForGeeks.  
-
-And if you are more interested in coding you can visit interviewbit.  
-
-I guess I have covered most part of it, any doubt or more about platform details catch me up in Facebook — Shrinidhi Kulkarni
+The code can be found here — https://github.com/Shrinidhikulkarni7/Obfuscation

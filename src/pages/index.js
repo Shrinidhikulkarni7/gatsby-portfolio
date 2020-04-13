@@ -15,14 +15,9 @@ export default () => {
                 Hi, I'm Shrinidhi Kulkarni!
             </h1>
             <p>
-                A technological enthusiast born in Bijapur, IN, and I love to enhance my skills to 
-                become a very good DevOps engineer and change the world. <br/>
-                I love technology, soccer and watching movies. I write a lot of things on technology 
-                which can be found on my&nbsp;
-                <a target="_blank" rel="noopener noreferrer" href="https://medium.com/@davidcesc">
-                    Medium
-                </a> <br/>
-                Always up for coffee and beer!
+                A technological enthusiast based in Bengaluru, IN, and trying to put a dent in the universe <br/>
+                I love technology, soccer and watching movies. Get in touch with any of the below sources <br/>
+                Loving DevOps as of now! :)
             </p> <br/> 
             <Social />
         </div>

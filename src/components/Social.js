@@ -1,16 +1,10 @@
 import React from 'react';
-import { FaTwitter, FaGithub, FaMediumM, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
+import { FaTwitter, FaGithub, FaMediumM, FaLinkedinIn, FaInstagram , FaStackOverflow, FaKeybase, FaUbuntu, FaFacebook  } from 'react-icons/fa'
 
 export const Social = () => {
     return (
         <div className="social">
-            <a
-             target="_blank" 
-             rel="noopener noreferrer" 
-             href="https://twitter.com/chinnurkulkarni"
-            >
-                <FaTwitter />
-            </a>
+           
             <a
              target="_blank" 
              rel="noopener noreferrer" 
@@ -35,10 +29,47 @@ export const Social = () => {
             <a
              target="_blank" 
              rel="noopener noreferrer" 
+             href="https://stackoverflow.com/users/9363493/shrinidhi-kulkarni"
+            >
+                <FaStackOverflow />
+            </a> 
+            <a
+             target="_blank" 
+             rel="noopener noreferrer" 
+             href="https://twitter.com/chinnurkulkarni"
+            >
+                <FaTwitter />
+            </a>
+            <a
+             target="_blank" 
+             rel="noopener noreferrer" 
              href="https://www.instagram.com/_shrinidhi/"
             >
                 <FaInstagram />
             </a>
+           
+            <a
+             target="_blank" 
+             rel="noopener noreferrer" 
+             href="https://keybase.io/shrinidhi"
+            >
+                <FaKeybase />
+            </a>
+            <a
+             target="_blank" 
+             rel="noopener noreferrer" 
+             href="https://askubuntu.com/users/475765/shrinidhi-kulkarni"
+            >
+                <FaUbuntu />
+            </a>
+            <a
+             target="_blank" 
+             rel="noopener noreferrer" 
+             href="https://www.facebook.com/chinnu.kulkarni.9"
+            >
+                <FaFacebook />
+            </a>
+            
         </div>
     )
 }
