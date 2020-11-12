@@ -12,11 +12,11 @@ export default () => {
              className="profile-image"
             />
             <h1>
-                Hi, I'm Shrinidhi Kulkarni!
+                Hello World, I'm Shrinidhi Kulkarni
             </h1>
             <p>
-                A technological enthusiast based in Bengaluru, IN, and trying to put a dent in the universe <br/>
-                I love technology, soccer and watching movies. Get in touch with any of the below sources <br/>
+                A common man based in Bengaluru from Bijapur, and trying to put a dent in the universe <br/>
+                I love technology, soccer and exploring temples Get in touch with any of the below <br/>    
                 Loving DevOps as of now! :)
             </p> <br/> 
             <Social />
